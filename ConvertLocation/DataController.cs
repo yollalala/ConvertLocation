@@ -199,6 +199,37 @@ namespace ConvertLocation
             // save new data location in new file
             File.WriteAllLines(dirOutput, arrLine);
         }
+
+        public static void writeNumberDistinctLocation(string directory, string output)
+        {
+            string[] lines = File.ReadAllLines(directory);
+            Dictionary<string, int> dLocation = new Dictionary<string, int>();
+
+            // calculate number of locations
+            foreach(string line in lines)
+            {
+                string location = line.ToLower();
+                if(dLocation.ContainsKey(location))
+                {
+                    dLocation[location] += 1;
+                }
+                else
+                {
+                    dLocation.Add(location, 1);
+                }
+            }
+
+            // sort dictionary based on its value
+            var items = from d in dLocation orderby d.Value descending select d;
+
+            string[] arrLocation = new string[items.Count()];
+            for(int i = 0; i < items.Count(); i++)
+            {
+                arrLocation[i] = items.ElementAt(i).Key + " " +items.ElementAt(i).Value.ToString();
+            }
+
+            File.WriteAllLines(output, arrLocation);
+        }
     }
 
     class Coordinate

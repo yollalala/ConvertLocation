@@ -28,18 +28,23 @@ namespace ConvertLocation
             //string dirRawLocationProvince = @"E:\output_location\data_province\";
             //string dirOutput = @"E:\output_real\data_location\data_location_complete_replace_province.txt";
 
-            string directory = @"E:\output_location\data_complete\data_location_v2_stage3_clean_empty_line\";
-            string fileName = @"data_location_v2_cleaned.txt";
-            string outputFile = @"data_location_v2_cleaned_distinct_v2.txt";
+            //string directory = @"E:\output_location\data_complete\data_location_v2_stage3_clean_empty_line\";
+            //string fileName = @"data_location_v2_cleaned.txt";
+            //string outputFile = @"data_location_v2_cleaned_distinct_v2.txt";
 
-            // write distinct location
-            List<string> lines = DataController.getLinesFromFile(directory + fileName);
-            Console.WriteLine(lines.Count);
+            // write number distinct location
+            string directory = @"D:\data_all_terbaru\03-13-2016\data_location_v2_cleaned.txt";
+            string output = @"D:\data_location_distinct_number.txt";
+            DataController.writeNumberDistinctLocation(directory, output);
 
-            lines = lines.Distinct().ToList();
-            Console.WriteLine(lines.Count);
+            //// write distinct location
+            //List<string> lines = DataController.getLinesFromFile(directory + fileName);
+            //Console.WriteLine(lines.Count);
 
-            DataController.writeDistinctLocation(lines, directory, outputFile);
+            //lines = lines.Distinct().ToList();
+            //Console.WriteLine(lines.Count);
+
+            //DataController.writeDistinctLocation(lines, directory, outputFile);
 
             //// get real location from raw province
             ////DataController.getLocationFromRawProvince(dirRawLocationProvince);
